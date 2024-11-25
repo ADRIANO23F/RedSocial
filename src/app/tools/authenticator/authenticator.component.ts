@@ -13,6 +13,24 @@ export class AuthenticatorComponent {
   constructor() {
     this.firebasetsAuth = new FirebaseTSAuth();
   }
+onResetClick(resetemail: HTMLInputElement){
+  let email = resetemail.value;
+  if(this.isNotEmpty(email)){
+    this.firebasetsAuth.sendPasswordResetEmail(
+      {
+        email: email,
+        onComplete: (err) =>{
+          alert('Se envio un codigo a tu correo');
+        }
+        
+      }
+    );
+  }
+
+}
+
+
+
   onLoginClick(
     loginemail: HTMLInputElement,
     loginpassword: HTMLInputElement
@@ -30,12 +48,12 @@ export class AuthenticatorComponent {
           },
           onFail:(err) =>{
             alert(err);
+
           }
         }
       );
     }
   }
-
 
   onRegisterClick(
     registeremail: HTMLInputElement,

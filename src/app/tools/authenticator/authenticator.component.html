@@ -54,9 +54,10 @@
   <form>
     <div class="input-group">
       <label for="email">Correo Electrónico</label>
-      <input type="email" id="email" placeholder="Ingresa tu correo" required>
+      <input #resetemail type="email" id="email" placeholder="Ingresa tu correo" required>
     </div>
-    <button type="button" class="recover-btn">Recuperar Contraseña</button>
+    <button (click)="onResetClick(resetemail)"
+    type="button" class="recover-btn">Recuperar Contraseña</button>
     <p class="back-link">
       <a (click)="onLoginClick1()">Regresar al inicio de sesión</a>
     </p>
