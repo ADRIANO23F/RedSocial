@@ -1,6 +1,10 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+
+
+
 @Component({
   selector: 'app-authenticator',
   imports: [NgIf],
@@ -10,7 +14,7 @@ import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 export class AuthenticatorComponent {
   state = AuthenticatorCompState.LOGIN;
   firebasetsAuth: FirebaseTSAuth;
-  constructor() {
+  constructor(private bottomSheetRef: MatBottomSheetRef) {
     this.firebasetsAuth = new FirebaseTSAuth();
   }
 onResetClick(resetemail: HTMLInputElement){
@@ -20,7 +24,8 @@ onResetClick(resetemail: HTMLInputElement){
       {
         email: email,
         onComplete: (err) =>{
-          alert('Se envio un codigo a tu correo');
+          alert("Utilice una cuenta de Gmail existente");
+          this.bottomSheetRef.dismiss();
         }
         
       }
@@ -28,8 +33,6 @@ onResetClick(resetemail: HTMLInputElement){
   }
 
 }
-
-
 
   onLoginClick(
     loginemail: HTMLInputElement,
@@ -44,9 +47,10 @@ onResetClick(resetemail: HTMLInputElement){
           email: email,
           password: password,
           onComplete:(uc) =>{
-            alert("INICIASTE SESION");
+            this.bottomSheetRef.dismiss();
           },
           onFail:(err) =>{
+            alert("Fallo al Iniciar sesion , Utilize Una cuenta Existente");
             alert(err);
 
           }
@@ -74,13 +78,10 @@ onResetClick(resetemail: HTMLInputElement){
           email: email,
           password: password,
           onComplete: (uc) => {
-            alert("CUENTA CREADA");
-            registeremail.value = "";
-            registerpassword.value = "";
-            registerconfirmpassword.value = "";
+            this.bottomSheetRef.dismiss();
           },
           onFail: (err) => {
-            alert("FALLO AL INICIAR SESION");
+            alert("Fallo al crear una cuenta,Utilize credenciales Correctos");
 
           }
 
