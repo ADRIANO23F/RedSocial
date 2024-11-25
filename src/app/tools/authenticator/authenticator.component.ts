@@ -13,6 +13,30 @@ export class AuthenticatorComponent {
   constructor() {
     this.firebasetsAuth = new FirebaseTSAuth();
   }
+  onLoginClick(
+    loginemail: HTMLInputElement,
+    loginpassword: HTMLInputElement
+  ) {
+    let email = loginemail.value;
+    let password = loginpassword.value;
+
+    if (this.isNotEmpty(email) && this.isNotEmpty(password)) {
+      this.firebasetsAuth.signInWith(
+        {
+          email: email,
+          password: password,
+          onComplete:(uc) =>{
+            alert("INICIASTE SESION");
+          },
+          onFail:(err) =>{
+            alert(err);
+          }
+        }
+      );
+    }
+  }
+
+
   onRegisterClick(
     registeremail: HTMLInputElement,
     registerpassword: HTMLInputElement,
@@ -21,41 +45,41 @@ export class AuthenticatorComponent {
     let email = registeremail.value;
     let password = registerpassword.value;
     let confirmpassword = registerconfirmpassword.value;
-    if(
-     this.isNotEmpty(email) &&
-     this.isNotEmpty(password) &&
-     this.isNotEmpty(confirmpassword) &&
-     this.isAMatch(password, confirmpassword)
-    ){
+    if (
+      this.isNotEmpty(email) &&
+      this.isNotEmpty(password) &&
+      this.isNotEmpty(confirmpassword) &&
+      this.isAMatch(password, confirmpassword)
+    ) {
       this.firebasetsAuth.createAccountWith(
         {
           email: email,
           password: password,
           onComplete: (uc) => {
             alert("CUENTA CREADA");
-            registeremail.value= "";
-            registerpassword.value="";
-            registerconfirmpassword.value="";
+            registeremail.value = "";
+            registerpassword.value = "";
+            registerconfirmpassword.value = "";
           },
           onFail: (err) => {
             alert("FALLO AL INICIAR SESION");
-  
+
           }
-  
+
         }
       );
 
     }
-    
+
   }
-isNotEmpty(text: string){
-  return text != null && text.length > 0;
-}
-isAMatch(text:string, comparedWith: string){
-  return text == comparedWith;
+  isNotEmpty(text: string) {
+    return text != null && text.length > 0;
+  }
+  isAMatch(text: string, comparedWith: string) {
+    return text == comparedWith;
 
 
-}
+  }
   onForgotPasswordClick() {
     this.state = AuthenticatorCompState.FORGOT_PASSWORD;
   }
@@ -64,7 +88,7 @@ isAMatch(text:string, comparedWith: string){
     this.state = AuthenticatorCompState.REGISTER;
   }
 
-  onLoginClick() {
+  onLoginClick1() {
     this.state = AuthenticatorCompState.LOGIN;
   }
 
