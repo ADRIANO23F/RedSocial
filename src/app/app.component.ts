@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { NgIf } from '@angular/common';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
+import { Router } from '@angular/router';
 
 
 
@@ -23,7 +24,9 @@ export class AppComponent {
 
 
 
-  constructor(private loginSheet: MatBottomSheet) {
+  constructor(private loginSheet: MatBottomSheet,
+    private router:Router
+  ) {
     FirebaseTSApp.init(environment.firebaseConfig);
     this.auth = new FirebaseTSAuth();
 
@@ -32,13 +35,13 @@ export class AppComponent {
         this.auth.checkSignInState(
           {
             whenSignedIn: user => {
-
+             
             },
             whenSignedOut: user => {
-
+              
             },
             whenSignedInAndEmailNotVerified: user => {
-
+                 this.router.navigate(["emailVerification"]);
             },
             whenSignedInAndEmailVerified: user => {
 
