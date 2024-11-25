@@ -1,6 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 @Component({
   selector: 'app-authenticator',
   imports: [NgIf],
@@ -9,6 +9,53 @@ import { Component } from '@angular/core';
 })
 export class AuthenticatorComponent {
   state = AuthenticatorCompState.LOGIN;
+  firebasetsAuth: FirebaseTSAuth;
+  constructor() {
+    this.firebasetsAuth = new FirebaseTSAuth();
+  }
+  onRegisterClick(
+    registeremail: HTMLInputElement,
+    registerpassword: HTMLInputElement,
+    registerconfirmpassword: HTMLInputElement
+  ) {
+    let email = registeremail.value;
+    let password = registerpassword.value;
+    let confirmpassword = registerconfirmpassword.value;
+    if(
+     this.isNotEmpty(email) &&
+     this.isNotEmpty(password) &&
+     this.isNotEmpty(confirmpassword) &&
+     this.isAMatch(password, confirmpassword)
+    ){
+      this.firebasetsAuth.createAccountWith(
+        {
+          email: email,
+          password: password,
+          onComplete: (uc) => {
+            alert("CUENTA CREADA");
+            registeremail.value= "";
+            registerpassword.value="";
+            registerconfirmpassword.value="";
+          },
+          onFail: (err) => {
+            alert("FALLO AL INICIAR SESION");
+  
+          }
+  
+        }
+      );
+
+    }
+    
+  }
+isNotEmpty(text: string){
+  return text != null && text.length > 0;
+}
+isAMatch(text:string, comparedWith: string){
+  return text == comparedWith;
+
+
+}
   onForgotPasswordClick() {
     this.state = AuthenticatorCompState.FORGOT_PASSWORD;
   }
