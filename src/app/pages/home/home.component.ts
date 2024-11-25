@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from '../../tools/authenticator/authenticator.component';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,8 @@ import { AuthenticatorComponent } from '../../tools/authenticator/authenticator.
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  auth : FirebaseTSAuth = new FirebaseTSAuth();
+
   constructor (private loginSheet: MatBottomSheet){
 
   }
@@ -17,4 +20,7 @@ export class HomeComponent {
 this.loginSheet.open(AuthenticatorComponent)
 
   }
+
+ 
+ 
 }

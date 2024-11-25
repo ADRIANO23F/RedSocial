@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Header */
+  .header {
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .login-link {
+    text-decoration: none;
+    color: #007bff;
+    margin-right: 70px;
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap; /* Evita que el texto se corte o se ajuste en varias líneas */
+    cursor: pointer;
+  
