@@ -8,15 +8,7 @@
     transition-duration: .5s;
     overflow: hidden;
 }
-section {
-    background-color: #f4f4f9;  /* Color de fondo suave */
-    padding: 30px;              /* Espaciado interior */
-    margin: 20px auto;          /* Margen alrededor de la sección */
-    max-width: 1200px;          /* Ancho máximo de la sección */
-    border-radius: 8px;         /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    font-family: 'Arial', sans-serif; /* Fuente legible */
-}
+
 #perfil-content {
     width: 100%;
     max-width: 500px;
