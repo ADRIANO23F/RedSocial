@@ -10,7 +10,7 @@ import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
 import { Router } from '@angular/router';
 import { PerfilComponent } from "./tools/perfil/perfil.component";
-
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 
 @Component({
@@ -22,6 +22,11 @@ import { PerfilComponent } from "./tools/perfil/perfil.component";
 export class AppComponent {
   title = 'RedSocial';
   auth: FirebaseTSAuth;
+  firestore = new FirebaseTSFirestore();
+  userHasProfile = true;
+  userdocument: userDocument | undefined;
+
+
 
 
 
@@ -45,6 +50,7 @@ export class AppComponent {
                  this.router.navigate(["emailVerification"]);
             },
             whenSignedInAndEmailVerified: user => {
+              this.getUserProfile();
 
             },
             whenChanged: user => {
@@ -53,6 +59,22 @@ export class AppComponent {
           }
         )
       });
+  }
+  getUserProfile(){
+    this.firestore.listenToDocument(
+      {
+        name:"Getting Document",
+        path: ["Users", this.auth.getAuth().currentUser?.uid ?? 'default-uid']
+,
+        onUpdate: (result) =>{
+            this.userdocument = <userDocument>result.data();
+          
+          this.userHasProfile = result.exists;
+ 
+        }
+
+      }
+    );
   }
 
   loggedIn() {
@@ -70,3 +92,7 @@ export class AppComponent {
 
 }
 
+export interface userDocument{
+  publicName: string;
+  description: string;
+}

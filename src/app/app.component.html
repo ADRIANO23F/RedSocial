@@ -1,6 +1,9 @@
 
 <header class="header">
     <a  *ngIf="!loggedIn()" (click)="onLoginClick()"  class="login-link">Iniciar sesión</a>
+    <!-- Cambiar userDocument a userdocument -->
+<a *ngIf="loggedIn() && userHasProfile" class="login-link">HOLA,{{userdocument?.publicName}}</a>
+
     <a   *ngIf="loggedIn()"  (click)="onLogoutClick()" class="login-link">Cerrar Sesión</a>
   </header>
 
