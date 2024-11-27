@@ -9,12 +9,13 @@ import { NgIf } from '@angular/common';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
 import { Router } from '@angular/router';
+import { PerfilComponent } from "./tools/perfil/perfil.component";
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatCardModule, AuthenticatorComponent, NgIf],
+  imports: [RouterOutlet, MatCardModule, AuthenticatorComponent, NgIf, PerfilComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
