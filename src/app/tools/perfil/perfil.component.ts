@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./perfil.component.css'], // Cambiar a styleUrls
 })
 export class PerfilComponent {
-  @Input() show: boolean = false; // Inicializar directamente
+  @Input() show: boolean = true; // Inicializar directamente
+  cerrarSesion() {
+    this.show = false; // Esto cerrará el perfil
+  }
 }
-

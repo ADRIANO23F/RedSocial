@@ -7,8 +7,8 @@
     z-index: 9;
     transition-duration: .5s;
     overflow: hidden;
-
 }
+
 #perfil-content {
     width: 100%;
     max-width: 500px;
@@ -16,20 +16,21 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Cambié esto para que los elementos se apilen verticalmente */
 }
 
-.active{
+.active {
     width: 100vw;
 }
-.idle{
+
+.idle {
     width: 0;
 }
 
-input, textarea{
+input, textarea {
     width: 100%;
     padding: 1em;
     border-radius: 1em;
@@ -40,4 +41,22 @@ input, textarea{
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+}
+
+/* Centrar los botones */
+button {
+    width: 100%; /* Esto asegura que el botón ocupe el ancho completo */
+    padding: 1em;
+    border-radius: 1em;
+    background-color: beige;
+    color: black;
+    border: none;
+    cursor: pointer;
+    margin-top: 1em; /* Un pequeño espacio entre los botones */
+    text-align: center; /* Asegura que el texto esté centrado */
+}
+
+/* Estilo hover para los botones */
+button:hover {
+    background-color: beige;
 }
