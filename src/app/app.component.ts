@@ -31,7 +31,7 @@ export class AppComponent {
 
 
   constructor(private loginSheet: MatBottomSheet,
-    private router:Router
+    private router: Router
   ) {
     FirebaseTSApp.init(environment.firebaseConfig);
     this.auth = new FirebaseTSAuth();
@@ -41,13 +41,13 @@ export class AppComponent {
         this.auth.checkSignInState(
           {
             whenSignedIn: user => {
-             
+
             },
             whenSignedOut: user => {
-              
+
             },
             whenSignedInAndEmailNotVerified: user => {
-                 this.router.navigate(["emailVerification"]);
+              this.router.navigate(["emailVerification"]);
             },
             whenSignedInAndEmailVerified: user => {
               this.getUserProfile();
@@ -60,17 +60,20 @@ export class AppComponent {
         )
       });
   }
-  getUserProfile(){
+  getUserProfile() {
     this.firestore.listenToDocument(
       {
-        name:"Getting Document",
+        name: "Getting Document",
         path: ["Users", this.auth.getAuth().currentUser?.uid ?? 'default-uid']
-,
-        onUpdate: (result) =>{
-            this.userdocument = <userDocument>result.data();
-          
+        ,
+        onUpdate: (result) => {
+          this.userdocument = <userDocument>result.data();
+
           this.userHasProfile = result.exists;
- 
+          if (this.userHasProfile) {
+            this.router.navigate(["publicacion"]);
+          }
+
         }
 
       }
@@ -81,18 +84,18 @@ export class AppComponent {
     return this.auth.isSignedIn();
   }
 
-  onLogoutClick(){
+  onLogoutClick() {
     this.auth.signOut();
   }
 
-  onLoginClick(){
+  onLoginClick() {
     this.loginSheet.open(AuthenticatorComponent)
   }
 
 
 }
 
-export interface userDocument{
+export interface userDocument {
   publicName: string;
   description: string;
 }
