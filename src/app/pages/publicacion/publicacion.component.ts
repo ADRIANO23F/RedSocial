@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { CreacionpublicacionComponent } from '../../tools/creacionpublicacion/creacionpublicacion.component';
 
 @Component({
   selector: 'app-publicacion',
@@ -8,4 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./publicacion.component.css'],
   imports: [MatIconModule] // Importa MatIconModule aquí
 })
-export class PublicacionComponent {}
+export class PublicacionComponent {
+  constructor(private dialog: MatDialog){}
+ onCreatePostClick(){
+  this.dialog.open(CreacionpublicacionComponent);
+
+ }
+
+
+}
