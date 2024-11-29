@@ -1,1 +1,19 @@
-<p>creacionpublicacion works!</p>
+<mat-card>
+    <mat-card-header>
+
+        <mat-card-title> Crea tu publicacion</mat-card-title>
+    </mat-card-header>
+    <div>
+        <textarea placeholder="Type message..." ></textarea>
+    </div>
+    <mat-card-actions align="end">
+        <button mat-button-color="warn">
+            <label for="photo-upload">
+                <input id="photo-upload" type="file" accept="image/*"/>
+                <mat-icon>Inserta foto</mat-icon>
+
+            </label>
+        </button>
+        <button mat-flat-button color="warn">post</button>
+    </mat-card-actions>
+</mat-card>
