@@ -1,0 +1,81 @@
+/* Estilo general para el mat-card */
+mat-card {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  /* Estilo para el encabezado del mat-card */
+  mat-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  /* Estilo para el título del card */
+  mat-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Estilo para el textarea */
+  textarea {
+    width: 100%;
+    height: 100px;
+    margin: 16px 0;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para el área de acciones */
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+  }
+  
+  /* Estilo para el botón de subir foto */
+  button label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Ocultar el input de tipo archivo */
+  input[type="file"] {
+    display: none;
+  }
+  
+  /* Estilo para los botones */
+  button {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+  
+  button[mat-flat-button] {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Estilo para el mat-icon */
+  mat-icon {
+    font-size: 1.2rem;
+    margin-right: 8px;
+    color: #757575;
+  }
+  
