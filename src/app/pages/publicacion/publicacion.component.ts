@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-publicacion',
-  imports: [],
+  standalone: true, // Esto indica que es un componente standalone
   templateUrl: './publicacion.component.html',
-  styleUrl: './publicacion.component.css'
+  styleUrls: ['./publicacion.component.css'],
+  imports: [MatIconModule] // Importa MatIconModule aquí
 })
-export class PublicacionComponent {
-
-}
+export class PublicacionComponent {}
