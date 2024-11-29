@@ -6,10 +6,15 @@
     <div>
         <textarea placeholder="Type message..." ></textarea>
     </div>
+    <div *ngIf="selectedImageFile" id="post-preview">
+        <img id="post-preview-image"/>
+    </div>
     <mat-card-actions align="end">
         <button mat-button-color="warn">
             <label for="photo-upload">
-                <input id="photo-upload" type="file" accept="image/*"/>
+                <input #photoSelector (change)="onPhotoSelected(photoSelector)"
+                #photoSelector1 (change)="onPhotoSelected(photoSelector)"
+                id="photo-upload" type="file" accept="image/*"/>
                 <mat-icon>Insertar imagen</mat-icon>
 
             </label>
