@@ -3,6 +3,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { CreacionpublicacionComponent } from '../../tools/creacionpublicacion/creacionpublicacion.component';
 import { PostComponent } from '../../tools/post/post.component'; // Asegúrate de usar la ruta correcta
+import { FirebaseTSFirestore, Limit, OrderBy, Where } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+
+
 
 @Component({
   selector: 'app-publicacion',
@@ -12,9 +15,18 @@ import { PostComponent } from '../../tools/post/post.component'; // Asegúrate d
   imports: [MatIconModule, PostComponent] // Incluye PostComponent aquí
 })
 export class PublicacionComponent {
+  firestore = new FirebaseTSFirestore();
   constructor(private dialog: MatDialog) {}
 
   onCreatePostClick() {
     this.dialog.open(CreacionpublicacionComponent);
   }
+  
+
+
+   
+ 
+
+
+
 }
