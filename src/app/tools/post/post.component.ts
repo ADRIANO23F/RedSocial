@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card'; // Módulos necesarios para mat-card
-import { MatIconModule } from '@angular/material/icon'; // Módulo necesario para mat-icon
+import { Component, Input } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-post', // Ajusta el selector según tu uso
+  selector: 'app-post',
+  standalone: true,
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
-  standalone: true,
-  imports: [MatCardModule, MatIconModule], // Agrega los módulos necesarios aquí
+  imports: [MatCardModule, MatIconModule],
 })
-export class PostComponent {}
+export class PostComponent {
+  @Input() posData?: { comment: string }; // Marcado como opcional
+}
