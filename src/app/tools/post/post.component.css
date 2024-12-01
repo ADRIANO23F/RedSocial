@@ -1,4 +1,82 @@
-.action-item{
-    margin-left: .5em;
+/* Estilo para la tarjeta */
+mat-card {
+    margin: 16px auto;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Gradiente de fondo */
+    color: #333;
+    overflow: hidden;
+}
+
+/* Encabezado de la tarjeta */
+mat-card-header {
+    padding-bottom: 0;
+    border-bottom: 2px solid #ffa726; /* Línea inferior colorida */
+}
+
+/* Títulos */
+mat-card-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ff7043; /* Tono cálido */
+}
+
+mat-card-subtitle {
+    font-size: 1.1rem;
+    color: #8e8e8e;
+}
+
+/* Imagen */
+mat-card-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ffa726; /* Línea colorida bajo la imagen */
+    margin-bottom: 8px;
+}
+
+/* Contenido */
+mat-card-content {
+    font-size: 1.2rem;
+    color: #555;
+    padding: 16px 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo suave */
+    border-radius: 8px;
+    margin: 8px;
+}
+
+/* Resaltar comentario */
+mat-card-content::before {
+    content: "Comentario:";
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ff7043;
+    margin-bottom: 8px;
+}
+
+/* Estilo de acciones */
+mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 2px solid #ffa726; /* Línea superior colorida */
+}
+
+/* Íconos */
+mat-icon {
     cursor: pointer;
+    font-size: 1.8rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: #ff7043; /* Tono cálido */
+}
+
+mat-icon:hover {
+    color: #fb8c00; /* Color más intenso */
+    transform: scale(1.2); /* Aumenta ligeramente al pasar el cursor */
+}
+
+.action-item {
+    margin: 0 8px;
 }
