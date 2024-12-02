@@ -40,6 +40,7 @@ export class PublicacionComponent {
         result.docs.forEach((doc) => {
           const post = <PostData>doc.data();
           this.posts.push(post); // Agrega la publicación al array
+         // console.log("post: ", this.posts)
         });
       },
       onFail: (err) => {
@@ -53,4 +54,5 @@ export class PublicacionComponent {
 export interface PostData {
   comment: string;
   creatorId: string;
+  imageUrl?:  string;
 }

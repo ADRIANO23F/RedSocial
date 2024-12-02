@@ -9,4 +9,4 @@
 
 <router-outlet></router-outlet>
 
-<app-perfil [show]="loggedIn()"></app-perfil>
+<app-perfil   *ngIf="!userHasProfile" ></app-perfil>

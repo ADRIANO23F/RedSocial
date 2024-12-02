@@ -1,13 +1,19 @@
 
-<div id="perfil" [ngClass]="{'active':show,'idle': !show}" >
-    <div id="perfil-content">
-        <input #nameInput placeholder="Nombre">
-        <textarea #descriptionInput placeholder="Descripcion" id=""></textarea>
-        <button (click)="onContinueCLICK(nameInput, descriptionInput)"
-        mat-flat-button color="warn">continuar</button>
-        <button class="btn-logout" (click)="cerrarSesion()">Cerrar sesión</button>
-
+<div  >
+    <div id="perfil" [ngClass]="{'active':show,'idle': !show}" >
+        <div id="perfil-content">
+            <input #nameInput placeholder="Nombre">
+            <textarea #descriptionInput placeholder="Descripcion" id=""></textarea>
+            <button (click)="onContinueCLICK(nameInput, descriptionInput)"
+            mat-flat-button color="warn">continuar</button>
+            <button class="btn-logout" (click)="cerrarSesion()">Cerrar sesión</button>
+    
+        </div>
+    
     </div>
 
+
 </div>
+
+
 

@@ -1,13 +1,13 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Name</mat-card-title>
-        <mat-card-subtitle>Description</mat-card-subtitle>
+        <mat-card-title>{{creatorName}}</mat-card-title>
+        <mat-card-subtitle>{{creatorDescription}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="">
+    <img mat-card-image src="{{postData?.imageUrl}}" >
     <mat-card-content>
-        dale like y suscribete
+       
     </mat-card-content>
-    {{posData?.comment}} <!-- Cambiado postData a posData -->
+    <div>{{postData?.comment || 'Comentario no disponible'}}</div> <!-- Cambiado postData a posData -->
     <mat-card-actions>
         <mat-icon class="action-item" color="warn">chat_bubble_outline</mat-icon>
         <mat-icon class="action-item" color="warn">favorite_border</mat-icon>

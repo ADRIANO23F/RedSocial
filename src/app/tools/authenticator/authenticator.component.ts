@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { Router } from '@angular/router';
 
 
 
@@ -14,7 +15,7 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 export class AuthenticatorComponent {
   state = AuthenticatorCompState.LOGIN;
   firebasetsAuth: FirebaseTSAuth;
-  constructor(private bottomSheetRef: MatBottomSheetRef) {
+  constructor(private bottomSheetRef: MatBottomSheetRef, private router: Router) {
     this.firebasetsAuth = new FirebaseTSAuth();
   }
 onResetClick(resetemail: HTMLInputElement){
@@ -48,6 +49,7 @@ onResetClick(resetemail: HTMLInputElement){
           password: password,
           onComplete:(uc) =>{
             this.bottomSheetRef.dismiss();
+            window.location.reload() 
           },
           onFail:(err) =>{
             alert("Fallo al Iniciar sesion , Utilize Una cuenta Existente");

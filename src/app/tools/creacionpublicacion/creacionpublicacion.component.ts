@@ -39,38 +39,34 @@ export class CreacionpublicacionComponent {
   }
 
 
-  uploadImagenPost(comment: string) {
+ async uploadImagenPost(comment: string) { 
+  if(this.selectedImageFile != null){
     let postId = this.firestore.genDocId();
-    this.storage.upload(
-      {
-        uploadName: "upload Image Post",
-        path: ["Posts", postId, "image"],
-        data: {
-          data: this.selectedImageFile
-        },
-        onComplete: (downloadUrl) => {
-          this.firestore.create(
-            {
-              path: ["Posts", postId],
-              data: {
-                comment: comment,
-                creatorId: this.auth.getAuth().currentUser?.uid || 'default-uid',
+    const img = await this.uploadToDevmias(this.selectedImageFile);
+   // console.log("UrlImg: " ,img)
+   
+      this.firestore.create(
+        {
+          path: ["Posts", postId],
+          data: {
+            comment: comment,
+            
+            creatorId: this.auth.getAuth().currentUser?.uid || 'default-uid',
 
-                imageUrl: downloadUrl,
-                timestamp: FirebaseTSApp.getFirestoreTimestamp()
-              },
-              onComplete: (docId) => {
-                this.dialog.close();
+            imageUrl: img,
+            timestamp: FirebaseTSApp.getFirestoreTimestamp()
+          },
+          onComplete: (docId) => {
+            this.dialog.close();
 
-              }
-
-            }
-          );
+          }
 
         }
+      );
 
-      }
-    );
+    
+  }
+   
 
   }
   uploadPost(comment: string){
@@ -91,6 +87,42 @@ export class CreacionpublicacionComponent {
     );
   }
 
+  async uploadToDevmias(selectedImageFile: File): Promise<string | undefined> {
+    let url: string | undefined;
+
+    try {
+      // Crear un FormData para enviar el archivo
+      const formData = new FormData();
+      formData.append('file', selectedImageFile);
+
+      // URL del archivo PHP
+      const serverUrl = 'https://devmiasx.com/upload.php'; // Cambia esto por la URL donde está tu archivo PHP
+
+      // Realizar la solicitud POST
+      const response = await fetch(serverUrl, {
+        method: 'POST',
+        body: formData,
+      });
+
+      // Verificar si la respuesta fue exitosa
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
+      }
+
+      // Parsear la respuesta
+      const responseData = await response.json();
+
+      if (responseData.success) {
+        url = "https://devmiasx.com/" + responseData.url;
+      } else {
+        throw new Error(responseData.message || 'Error desconocido al subir la imagen.');
+      }
+    } catch (error) {
+      console.error('Error al subir la imagen:', error);
+    }
+
+    return url;
+  }
 
 
 

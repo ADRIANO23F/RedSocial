@@ -41,7 +41,7 @@ export class AppComponent {
         this.auth.checkSignInState(
           {
             whenSignedIn: user => {
-
+             
             },
             whenSignedOut: user => {
 
@@ -51,7 +51,8 @@ export class AppComponent {
             },
             whenSignedInAndEmailVerified: user => {
               this.getUserProfile();
-
+              
+              
             },
             whenChanged: user => {
 
@@ -61,31 +62,41 @@ export class AppComponent {
       });
   }
   getUserProfile() {
-    this.firestore.listenToDocument(
-      {
-        name: "Getting Document",
-        path: ["Users", this.auth.getAuth().currentUser?.uid ?? 'default-uid']
-        ,
-        onUpdate: (result) => {
-          this.userdocument = <userDocument>result.data();
-
-          this.userHasProfile = result.exists;
-          if (this.userHasProfile) {
-            this.router.navigate(["publicacion"]);
+    let id = this.auth.getAuth().currentUser?.uid;
+    if( id != null){
+      this.firestore.listenToDocument(
+        {
+          name: "Getting Document",
+          path: ["Users", id]
+          ,
+          onUpdate: (result) => {
+            this.userdocument = <userDocument>result.data();
+          
+  
+            this.userHasProfile = result.exists;
+            console.log(this.userHasProfile)
+            if (this.userHasProfile) {
+              console.log("Si tiene perfil cargar post")
+              this.router.navigate(["publicacion"]);
+            }
+  
           }
-
+  
         }
-
-      }
-    );
+      );
+    }
+    
   }
 
   loggedIn() {
     return this.auth.isSignedIn();
+    
   }
 
   onLogoutClick() {
     this.auth.signOut();
+    this.router.navigate([""])
+    
   }
 
   onLoginClick() {
