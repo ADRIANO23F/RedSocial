@@ -3,6 +3,13 @@
     
     <div id="reply-box" aria-label="Caja de respuesta">
       <!-- Aquí puedes incluir comentarios dinámicos en el futuro -->
+    <div *ngFor="let comment of comments">
+      <div>
+        <p>{{comment.creatorName}}</p>
+        <p>{{comment.comment}}</p>
+      </div>
+
+    </div>
     </div>
     
     <div id="reply-action-bar">
