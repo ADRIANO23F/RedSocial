@@ -24,10 +24,7 @@ export class AppComponent {
   auth: FirebaseTSAuth;
   firestore = new FirebaseTSFirestore();
   userHasProfile = true;
-  userdocument: userDocument | undefined;
-
-
-
+  private static userdocument: userDocument | null | undefined = undefined;
 
 
   constructor(private loginSheet: MatBottomSheet,
@@ -44,6 +41,7 @@ export class AppComponent {
              
             },
             whenSignedOut: user => {
+              AppComponent.userdocument = null;
 
             },
             whenSignedInAndEmailNotVerified: user => {
@@ -61,6 +59,14 @@ export class AppComponent {
         )
       });
   }
+  public static getUserDocument(){
+    return AppComponent.userdocument;
+
+  }
+  get getUsername() {
+    return AppComponent.userdocument ? AppComponent.userdocument : null;
+  }
+  
   getUserProfile() {
     let id = this.auth.getAuth().currentUser?.uid;
     if( id != null){
@@ -70,10 +76,9 @@ export class AppComponent {
           path: ["Users", id]
           ,
           onUpdate: (result) => {
-            this.userdocument = <userDocument>result.data();
-          
-  
+            AppComponent.userdocument = <userDocument>result.data();
             this.userHasProfile = result.exists;
+            AppComponent.userdocument.userId = this.auth.getAuth().currentUser?.uid || ''; // Evitar undefined
             console.log(this.userHasProfile)
             if (this.userHasProfile) {
               console.log("Si tiene perfil cargar post")
@@ -109,4 +114,5 @@ export class AppComponent {
 export interface userDocument {
   publicName: string;
   description: string;
+  userId: string;
 }

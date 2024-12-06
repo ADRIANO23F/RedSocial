@@ -13,36 +13,43 @@ import { ReplyComponent } from '../reply/reply.component';
   imports: [MatCardModule, MatIconModule],
 })
 export class PostComponent {
-  @Input() postData?: { comment: string, creatorId :string, imageUrl ?: string}; // Marcado como opcional
- 
+  @Input() postData?: { 
+    comment: string, 
+    creatorId: string, 
+    postId: string, // Agregado postId 
+    imageUrl?: string 
+  }; 
 
   creatorName: string = "";
-  creatorDescription: string  ="";
+  creatorDescription: string = "";
   firestore = new FirebaseTSFirestore();
+
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getCreatorInfo();
   }
-  onReplyClick(){
-    this.dialog.open(ReplyComponent);
 
+  onReplyClick() {
+    if (this.postData?.postId) {
+      this.dialog.open(ReplyComponent, { data: this.postData.postId });
+    } else {
+      console.error('Post data or postId is undefined');
+    }
   }
+
   getCreatorInfo() {
-    if(this.postData != null){
+    if (this.postData) {
       this.firestore.getDocument({
         path: ['Users', this.postData.creatorId],
         onComplete: result => {
           let userDocument = result.data();
-          if(userDocument != null){
-            this.creatorName = userDocument['publicName']; //.publicName;
-            this.creatorDescription = userDocument['description']  //.description;
-            //console.log("data: ",this.postData)
+          if (userDocument) {
+            this.creatorName = userDocument['publicName'];
+            this.creatorDescription = userDocument['description'];
           }
-          
         }
       });
     }
-   
   }
 }

@@ -9,8 +9,10 @@
       <input 
         type="text" 
         placeholder="Escribe un comentario..." 
-        aria-label="Campo para escribir comentario" />
-      <button mat-flat-button color="warn" aria-label="Enviar comentario">
+        aria-label="Campo para escribir comentario" 
+        #commentInput/>
+      <button mat-flat-button color="warn" aria-label="Enviar comentario"
+      (click)="onSendClick(commentInput)">
         <mat-icon>send</mat-icon>
       </button>
     </div>
