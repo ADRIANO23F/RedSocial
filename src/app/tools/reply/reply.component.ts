@@ -24,6 +24,15 @@ export class ReplyComponent {
     this.getComments();
   }
 
+  isCommentCreator(comment: comment): boolean {
+    // Asegúrate de que la propiedad 'creatorId' exista en el tipo 'comment'
+    const userDoc = AppComponent.getUserDocument();
+    if (userDoc) {
+      return comment.creatorId === userDoc.userId;
+    }
+    return false; // Si no hay 'userDoc', retornar 'false'
+  }
+  
   getComments() {
     this.firestore.listenToCollection(
       {

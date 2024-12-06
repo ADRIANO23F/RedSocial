@@ -1,107 +1,114 @@
 /* Estilo general */
 body {
-    font-family: 'Roboto', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
-    color: #333;
-    line-height: 1.5;
-  }
-  
-  /* Sección de comentarios */
-  section {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Título de comentarios */
-  section p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0 0 15px;
-    color: #444;
-  }
-  
-  /* Caja de respuesta */
-  #reply-box {
-    border: 1px solid #ddd;
-    padding: 15px;
-    background-color: #fafafa;
-    border-radius: 8px;
-    min-height: 120px;
-    margin-bottom: 20px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-    overflow-y: auto;
-  }
-  
-  /* Barra de acción */
-  #reply-action-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  /* Campo de texto */
-  #reply-action-bar input {
-    flex: 1;
-    padding: 12px 15px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    outline: none;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  #reply-action-bar input:focus {
-    border-color: #3f51b5;
-    box-shadow: 0 0 6px rgba(63, 81, 181, 0.3);
-  }
-  
-  /* Botón de enviar */
-  #reply-action-bar button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #3f51b5;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  #reply-action-bar button:hover {
-    background-color: #303f9f;
-    transform: translateY(-2px);
-  }
-  
-  #reply-action-bar button:active {
-    transform: translateY(0);
-  }
-  
-  /* Responsividad */
-  @media (max-width: 768px) {
-    section {
-      padding: 10px;
-    }
-  
-    #reply-action-bar {
-      flex-direction: column;
-      gap: 15px;
-    }
-  
-    #reply-action-bar input,
-    #reply-action-bar button {
-      width: 100%;
-    }
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sección de comentarios */
+section {
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Título de comentarios */
+#comments-header {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Caja de respuesta */
+#reply-box {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para los comentarios */
+.comment-container {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.creator-comment-container {
+  background-color: #fff3e0;
+  border-color: #ffb74d;
+}
+
+.comment-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1a237e;
+}
+
+.comment {
+  font-size: 1rem;
+  color: #424242;
+}
+
+.creator-comment {
+  font-style: italic;
+  color: #ff6f00;
+}
+
+/* Barra de acción para enviar comentarios */
+#reply-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f4f4f9;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#reply-action-bar input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#reply-action-bar input:focus {
+  border-color: #0288d1;
+}
+
+#reply-action-bar button {
+  background-color: #f44336;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+#reply-action-bar button:hover {
+  background-color: #d32f2f;
+}
+
+#reply-action-bar button mat-icon {
+  margin-left: 5px;
+}

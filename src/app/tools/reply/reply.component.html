@@ -1,15 +1,14 @@
 <section aria-labelledby="comments-header">
-    <p id="comments-header" style="font-weight: bold; font-size: 1.2rem;">Comentarios</p>
+    <p id="comments-header">Comentarios</p>
     
-    <div id="reply-box" aria-label="Caja de respuesta">
-      <!-- Aquí puedes incluir comentarios dinámicos en el futuro -->
-    <div *ngFor="let comment of comments">
-      <div>
-        <p>{{comment.creatorName}}</p>
-        <p>{{comment.comment}}</p>
+    <div id="reply-box">
+      <div *ngFor="let comment of comments" 
+      [ngClass]="{'comment-container': true, 'creator-comment-container': isCommentCreator(comment)}">
+        <div>
+          <p class="comment-name">{{comment.creatorName}}</p>
+          <p class="comment">{{comment.comment}}</p>
+        </div>
       </div>
-
-    </div>
     </div>
     
     <div id="reply-action-bar">
@@ -23,5 +22,4 @@
         <mat-icon>send</mat-icon>
       </button>
     </div>
-  </section>
-  
+</section>
