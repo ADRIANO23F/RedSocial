@@ -5,6 +5,7 @@ import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFi
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { timestamp } from 'rxjs';
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
+import { AppComponent } from '../../app.component';
 @Component({
   selector: 'app-reply',
   standalone: true, // Asegúrate de que está definido como standalone
@@ -16,15 +17,18 @@ export class ReplyComponent {
   firestore = new FirebaseTSFirestore();
   constructor(@Inject(MAT_DIALOG_DATA) private postId: string){}
 onSendClick(commentInput: HTMLInputElement){
+  if(!(commentInput.value.length > 0)) return;
   this.firestore.create(
     {
       path: ["Posts", this.postId, "PostComments"],
       data: {
         comment: commentInput.value,
-        creatorId: "",
-        creatorName:"",
+        creatorId: AppComponent.getUserDocument()?.userId,
+        creatorName: AppComponent.getUserDocument()?.publicName,
         timestamp: FirebaseTSApp.getFirestoreTimestamp()
-
+      },
+      onComplete: (docId) => {
+        commentInput.value= "";
       }
 
     
