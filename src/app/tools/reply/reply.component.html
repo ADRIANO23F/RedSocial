@@ -1,9 +1,18 @@
-<p>Reply</p>
-<div id="reply-box">
-
-</div>
-<div id ="reply-action-bar">
-    <button mat-flat-button color="warn"><mat-icon>send </mat-icon></button>
-    <input placeholder="comment">
-
-</div>
+<section aria-labelledby="comments-header">
+    <p id="comments-header" style="font-weight: bold; font-size: 1.2rem;">Comentarios</p>
+    
+    <div id="reply-box" aria-label="Caja de respuesta">
+      <!-- Aquí puedes incluir comentarios dinámicos en el futuro -->
+    </div>
+    
+    <div id="reply-action-bar">
+      <input 
+        type="text" 
+        placeholder="Escribe un comentario..." 
+        aria-label="Campo para escribir comentario" />
+      <button mat-flat-button color="warn" aria-label="Enviar comentario">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </section>
+  
