@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { MatDialog } from '@angular/material/dialog';
+import { ReplyComponent } from '../reply/reply.component';
 
 @Component({
   selector: 'app-post',
@@ -17,12 +19,15 @@ export class PostComponent {
   creatorName: string = "";
   creatorDescription: string  ="";
   firestore = new FirebaseTSFirestore();
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getCreatorInfo();
   }
+  onReplyClick(){
+    this.dialog.open(ReplyComponent);
 
+  }
   getCreatorInfo() {
     if(this.postData != null){
       this.firestore.getDocument({
