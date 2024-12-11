@@ -1,25 +1,31 @@
-<section aria-labelledby="comments-header">
-    <p id="comments-header">Comentarios</p>
-    
-    <div id="reply-box">
-      <div *ngFor="let comment of comments" 
+<section aria-labelledby="comments-header" class="comments-section">
+  <p id="comments-header" class="comments-header">Comentarios</p>
+
+  <div id="reply-box" class="reply-box">
+    <div 
+      *ngFor="let comment of comments" 
       [ngClass]="{'comment-container': true, 'creator-comment-container': isCommentCreator(comment)}">
-        <div>
-          <p class="comment-name">{{comment.creatorName}}</p>
-          <p class="comment">{{comment.comment}}</p>
-        </div>
+      <div class="comment-content">
+        <p class="comment-name">{{comment.creatorName}}</p>
+        <p class="comment">{{comment.comment}}</p>
       </div>
     </div>
-    
-    <div id="reply-action-bar">
-      <input 
-        type="text" 
-        placeholder="Escribe un comentario..." 
-        aria-label="Campo para escribir comentario" 
-        #commentInput/>
-      <button mat-flat-button color="warn" aria-label="Enviar comentario"
-      (click)="onSendClick(commentInput)">
-        <mat-icon>send</mat-icon>
-      </button>
-    </div>
+  </div>
+
+  <div id="reply-action-bar" class="reply-action-bar">
+    <input 
+      type="text" 
+      placeholder="Escribe un comentario..." 
+      aria-label="Campo para escribir comentario" 
+      #commentInput 
+      class="comment-input"/>
+    <button 
+      mat-flat-button 
+      color="primary" 
+      aria-label="Enviar comentario" 
+      (click)="onSendClick(commentInput)" 
+      class="send-button">
+      <mat-icon>send</mat-icon> Enviar
+    </button>
+  </div>
 </section>
